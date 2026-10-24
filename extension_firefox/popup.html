@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<style>
+  body { font: 13px/1.5 "Segoe UI", Tahoma, Arial, sans-serif; width: 340px; margin: 0; padding: 12px; color: #1d2733; }
+  h1 { font-size: 15px; margin: 0 0 8px; }
+  .row { display: flex; align-items: center; gap: 6px; margin: 6px 0; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #999; }
+  .dot.on { background: #1b7f3b; } .dot.off { background: #b00020; }
+  .item { border: 1px solid #d5dbe3; border-radius: 6px; padding: 6px 8px; margin: 6px 0; }
+  .item .n { font-weight: 600; word-break: break-all; }
+  .item .m { color: #5b6773; font-size: 12px; }
+  button { cursor: pointer; border: 0; border-radius: 5px; padding: 4px 10px; background: #0b5cad; color: #fff; }
+  button:disabled { background: #8a97a5; cursor: default; }
+  a { color: #0b5cad; cursor: pointer; }
+  .empty { color: #5b6773; margin: 10px 0; }
+</style>
+</head>
+<body>
+  <h1>PyDM</h1>
+  <div class="row"><span id="dot" class="dot"></span><span id="state">...</span></div>
+  <label class="row"><input type="checkbox" id="intercept"> اعتراض التحميلات وإرسالها إلى PyDM</label>
+  <div><b>فيديو / صوت تم رصده في هذه الصفحة:</b></div>
+  <div id="list"></div>
+  <div class="row"><a id="opts">الإعدادات</a></div>
+  <script src="common.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
