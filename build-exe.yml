@@ -1,0 +1,26 @@
+# بناء PyDM.exe سحابياً بدون تثبيت Python على جهازك:
+# 1) ارفع محتويات هذا المجلد إلى مستودع GitHub جديد (خاص أو عام)
+# 2) تبويب Actions ← Build PyDM.exe ← Run workflow
+# 3) بعد دقيقتين نزّل الملف من Artifacts (PyDM-windows.zip)
+name: Build PyDM.exe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.8"      # يعمل على ويندوز 7 / 8 / 8.1 / 10 / 11
+      - run: python -m pip install --upgrade pyinstaller certifi
+      - run: >
+          pyinstaller --noconsole --onefile --clean --name PyDM --icon pydm.ico
+          --add-data "extension_chrome;extension_chrome"
+          --add-data "extension_firefox;extension_firefox" pydm.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PyDM-windows
+          path: dist/PyDM.exe
